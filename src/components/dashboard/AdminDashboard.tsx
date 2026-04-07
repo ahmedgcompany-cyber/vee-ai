@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { 
   X, Users, Download, DollarSign, TrendingUp, Package,
   BarChart3, Activity, Clock,
-  Search, Edit, Trash2, Eye, Plus
+  Plus
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import Avatar from '@/components/Avatar';
@@ -22,12 +22,12 @@ const realAnalytics = {
   userActivity: [] as any[],
 };
 
-const realProducts: any[] = [];
+
 
 export default function AdminDashboard({ isOpen, onClose }: AdminDashboardProps) {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState<'overview' | 'products' | 'users' | 'uploads' | 'analytics'>('overview');
-  const [searchQuery, setSearchQuery] = useState('');
+  
 
   if (!isOpen || !user || user.role !== 'admin') return null;
 
