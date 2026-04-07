@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 25% 4%;
+    --foreground: 230 60% 97%;
+    --card: 225 20% 8%;
+    --card-foreground: 230 60% 97%;
+    --popover: 225 20% 8%;
+    --popover-foreground: 230 60% 97%;
+    --primary: 190 100% 50%;
+    --primary-foreground: 225 25% 4%;
+    --secondary: 225 15% 12%;
+    --secondary-foreground: 230 60% 97%;
+    --muted: 225 15% 15%;
+    --muted-foreground: 225 10% 68%;
+    --accent: 190 100% 50%;
+    --accent-foreground: 225 25% 4%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 190 100% 50%;
+    --input: 225 15% 15%;
+    --ring: 190 100% 50%;
+    --radius: 0.625rem;
+    --sidebar-background: 225 20% 8%;
+    --sidebar-foreground: 230 60% 97%;
+    --sidebar-primary: 190 100% 50%;
+    --sidebar-primary-foreground: 225 25% 4%;
+    --sidebar-accent: 225 15% 15%;
+    --sidebar-accent-foreground: 230 60% 97%;
+    --sidebar-border: 190 100% 30%;
+    --sidebar-ring: 190 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-nexus-bg text-nexus-text font-body antialiased;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold tracking-tight;
+  }
+  
+  ::selection {
+    background: rgba(0, 212, 255, 0.3);
+    color: #F4F6FF;
+  }
+}
+
+@layer components {
+  .nexus-card {
+    @apply bg-nexus-bg-secondary border border-nexus-border/55 rounded-2xl;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+  }
+  
+  .nexus-glow {
+    box-shadow: 0 0 40px rgba(0,212,255,0.18);
+  }
+  
+  .nexus-glow-strong {
+    box-shadow: 0 0 60px rgba(0,212,255,0.35);
+  }
+  
+  .nexus-border {
+    @apply border border-nexus-border/55;
+  }
+  
+  .nexus-button {
+    @apply px-6 py-3 rounded-full border border-nexus-accent/55 bg-transparent text-nexus-text font-medium transition-all duration-300;
+  }
+  
+  .nexus-button:hover {
+    @apply bg-nexus-accent/12;
+    box-shadow: 0 0 40px rgba(0,212,255,0.25);
+  }
+  
+  .nexus-gradient-text {
+    @apply bg-gradient-to-r from-nexus-accent via-cyan-400 to-blue-400 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #00D4FF 0%, #7DD3FC 50%, #00D4FF 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 8s ease infinite;
+  }
+  
+  .glass-panel {
+    @apply bg-nexus-bg-secondary/80 backdrop-blur-xl border border-nexus-border/30;
+  }
+  
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}
