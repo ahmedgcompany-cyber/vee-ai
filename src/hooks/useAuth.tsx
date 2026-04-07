@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+﻿import React, { createContext, useContext, useState, useCallback } from 'react';
 import type { User } from '@/types';
-import { currentUser } from '@/data';
 
 interface AuthContextType {
   user: User | null;
@@ -12,21 +11,32 @@ interface AuthContextType {
   register: (email: string, password: string, name: string) => Promise<void>;
 }
 
-const AuthContext = createContext<AuthContextType |id: string>(undefined);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+const defaultAdmin: User = {
+  id: '1',
+  email: 'admin@vee.ai',
+  name: 'Ahmed M T Alghoul',
+  role: 'admin',
+  createdAt: new Date(),
+  downloads: [],
+  purchases: [],
+  subscriptions: [],
+  favorites: [],
+  uploads: [],
+};
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(currentUser);
+  const [user, setUser] = useState<User | null>(defaultAdmin);
 
-  const login = useCallback(async (_email: string, _password: string) => {
-    // Simulate API call
+  const login = useCallback(async () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
-    setUser(currentUser);
+    setUser(defaultAdmin);
   }, []);
 
-  const loginWithOAuth = useCallback(async (_provider: 'google' | 'github') => {
-    // Simulate OAuth flow
+  const loginWithOAuth = useCallback(async () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
-    setUser(currentUser);
+    setUser(defaultAdmin);
   }, []);
 
   const logout = useCallback(() => {
@@ -34,14 +44,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const register = useCallback(async (_email: string, _password: string, name: string) => {
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
-    setUser({
-      ...currentUser,
+    const newUser: User = {
+      id: '2',
       email: _email,
       name,
       role: 'free',
-    });
+      createdAt: new Date(),
+      downloads: [],
+      purchases: [],
+      subscriptions: [],
+      favorites: [],
+      uploads: [],
+    };
+    setUser(newUser);
   }, []);
 
   return (
@@ -63,7 +79,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (context ===id: string) {
+  if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
